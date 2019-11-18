@@ -1,4 +1,4 @@
-.PHONY: all deps bin-check ansible_deps vagrant-deps clean
+.PHONY: all deps bin-check ansible-deps vagrant-deps clean
 
 BINS :=  ansible
 BINS +=  vagrant
@@ -21,7 +21,7 @@ bin-check:
 	done
 
 terraform-deps:
-	@ansible-playbook -i hosts playbooks/kdevops_terraform.yml 
+	@ansible-playbook -i hosts playbooks/kdevops_terraform.yml
 	@if [ -d terraform ]; then \
 		make -C terraform deps; \
 	fi
@@ -29,10 +29,10 @@ terraform-deps:
 vagrant-deps:
 	@ansible-playbook -i hosts playbooks/kdevops_vagrant.yml
 
-ansible_deps:
+ansible-deps:
 	@ansible-galaxy install -r requirements.yml
 
-deps: bin-check ansible_deps terraform-deps vagrant-deps
+deps: bin-check ansible-deps terraform-deps vagrant-deps
 	@echo Installed dependencies
 
 terraform-clean:

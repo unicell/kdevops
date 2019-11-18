@@ -229,7 +229,7 @@ Before running ansible make sure you can ssh into the hosts listed on
 ansible/hosts.
 
 ```bash
-make ansible_deps
+make ansible-deps
 ansible-playbook -i hosts -l dev playbooks/bootlinux.yml
 ```
 
